@@ -15,6 +15,7 @@ class Lecture extends Model
     protected $table = 'lectures';
     protected $fillable = [
         'course_id',
+        'family_id',
         'lecture_date',
         'lecture_duration',
         'attended',
@@ -22,5 +23,8 @@ class Lecture extends Model
 
     public function course(){
         return $this->belongsTo(Course::class);
+    }
+    public function family(){
+        return $this->belongsTo(Family::class,'family_id');
     }
 }

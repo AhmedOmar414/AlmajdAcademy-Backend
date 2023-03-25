@@ -17,6 +17,7 @@ class LectureRequest extends FormRequest
     {
         return [
             'course_id'=>['required','numeric'],
+            'family_id'=>['required','numeric'],
             'lecture_date'=>['required','date'],
             'lecture_duration'=>['required'],
         ];
