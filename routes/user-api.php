@@ -19,8 +19,21 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 //ADMIN
 Route::group(['middleware'=>['auth:sanctum','admin']],function (){
-    Route::apiResource('/families','\App\Http\Controllers\Api\Admin\Family\FamiliesController');
-    Route::apiResource('/tutors','\App\Http\Controllers\Api\Admin\Tutors\TutorsController');
+//
+//    Route::apiResource('/families','\App\Http\Controllers\Api\Admin\Family\FamiliesController');
+//    Route::apiResource('/tutors','\App\Http\Controllers\Api\Admin\Tutors\TutorsController');
+
+
+    Route::get('get-families',[\App\Http\Controllers\Api\Admin\Families\IndexController::class,'getFamilies']);
+    Route::post('store-family',[\App\Http\Controllers\Api\Admin\Families\IndexController::class,'storeFamily']);
+    Route::put('update-family/{id}',[\App\Http\Controllers\Api\Admin\Families\IndexController::class,'updateFamily']);
+    Route::delete('destroy-families/{id}',[\App\Http\Controllers\Api\Admin\Families\IndexController::class,'destroyFamily']);
+
+    Route::get('tutors',[\App\Http\Controllers\Api\Admin\Tutors\TutorsController::class,'index']);
+    Route::post('tutors',[\App\Http\Controllers\Api\Admin\Tutors\TutorsController::class,'store']);
+    Route::put('tutors/{id}',[\App\Http\Controllers\Api\Admin\Tutors\TutorsController::class,'update']);
+    Route::delete('tutors/{id}',[\App\Http\Controllers\Api\Admin\Tutors\TutorsController::class,'destroy']);
+
 
     //statistics
     Route::get('/tutor-total-profits',[\App\Http\Controllers\Api\Admin\Statistics\IndexController::class,'totalMonthProfit']);
