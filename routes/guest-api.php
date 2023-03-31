@@ -6,5 +6,5 @@ use \App\Http\Controllers\Api\Login\LoginController;
 use Twilio\Rest\Client;
 
 Route::get('login',[LoginController::class,'login']);
-Route::get('whatsapp/send-test-message', [App\Http\Controllers\Controller::class, 'sendTestMessage']);
+Route::post('whatsapp/send-test-message', function (){return "sdfds";});
 
