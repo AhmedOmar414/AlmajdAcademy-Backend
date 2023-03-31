@@ -24,10 +24,10 @@ Route::group(['middleware'=>['auth:sanctum','admin']],function (){
 //    Route::apiResource('/tutors','\App\Http\Controllers\Api\Admin\Tutors\TutorsController');
 
 
-    Route::get('get-families',[\App\Http\Controllers\Api\Admin\Families\IndexController::class,'getFamilies']);
-    Route::post('store-family',[\App\Http\Controllers\Api\Admin\Families\IndexController::class,'storeFamily']);
-    Route::put('update-family/{id}',[\App\Http\Controllers\Api\Admin\Families\IndexController::class,'updateFamily']);
-    Route::delete('destroy-families/{id}',[\App\Http\Controllers\Api\Admin\Families\IndexController::class,'destroyFamily']);
+    Route::get('/get-families',[\App\Http\Controllers\Api\Admin\Families\IndexController::class,'getFamilies']);
+    Route::post('/store-family',[\App\Http\Controllers\Api\Admin\Families\IndexController::class,'storeFamily']);
+    Route::put('/update-family/{id}',[\App\Http\Controllers\Api\Admin\Families\IndexController::class,'updateFamily']);
+    Route::delete('/destroy-families/{id}',[\App\Http\Controllers\Api\Admin\Families\IndexController::class,'destroyFamily']);
 
     Route::get('tutors',[\App\Http\Controllers\Api\Admin\Tutors\TutorsController::class,'index']);
     Route::post('tutors',[\App\Http\Controllers\Api\Admin\Tutors\TutorsController::class,'store']);
