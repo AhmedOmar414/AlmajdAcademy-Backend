@@ -24,7 +24,7 @@ class TutorRequest extends FormRequest
     {
         return [
             'name'=>['required','max:50'],
-            'email'=>['email','required','max:50'],
+            'email'=>['email','required','max:50','unique:users'],
             'password'=>['required'],
             'families.*'=>['required','numeric'],
         ];
