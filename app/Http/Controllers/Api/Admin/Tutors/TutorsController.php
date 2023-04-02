@@ -33,7 +33,7 @@ class TutorsController extends Controller
 
         $user = User::create($data);
 
-        $families = json_decode($data['families']);
+        $families = $data['families'];
         foreach ($families as $family){
             FamilyTutor::create(['user_id'=>$user->id,'family_id'=>$family]);
         }
