@@ -20,8 +20,8 @@ class TutorsController extends Controller
     use ApiResponseTrait;
     public function index()
     {
-        $tutors = User::where('user_type_id',User::TUTOR)->paginate(10);
-        return $this->apiResponseWithPaginate('تم رجوع بيانات المعلمين بنجاح',TutorResource::collection($tutors),$tutors,true,Response::HTTP_OK);
+        $tutors = User::where('user_type_id',User::TUTOR)->get();
+        return $this->apiResponse('تم رجوع بيانات المعلمين بنجاح',TutorResource::collection($tutors),$tutors,true,Response::HTTP_OK);
     }
 
 

@@ -15,8 +15,8 @@ class IndexController extends Controller
     use ApiResponseTrait;
     public function getFamilies()
     {
-        $families = Family::paginate(10);
-        return $this->apiResponseWithPaginate('تم رجوع بيانات الأسر بنجاح',FamilyResource::collection($families),$families,true,Response::HTTP_OK);
+        $families = Family::all();
+        return $this->apiResponse('تم رجوع بيانات الأسر بنجاح',FamilyResource::collection($families),$families,true,Response::HTTP_OK);
     }
 
     public function storeFamily(FamilyRequest $request)
