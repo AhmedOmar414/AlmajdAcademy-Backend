@@ -16,7 +16,7 @@ class IndexController extends Controller
     public function getFamilies()
     {
         $families = Family::all();
-        return $this->apiResponse('تم رجوع بيانات الأسر بنجاح',FamilyResource::collection($families),$families,true,Response::HTTP_OK);
+        return $this->apiResponse('تم رجوع بيانات الأسر بنجاح',FamilyResource::collection($families),true,Response::HTTP_OK);
     }
 
     public function storeFamily(FamilyRequest $request)

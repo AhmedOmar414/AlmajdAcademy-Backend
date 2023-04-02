@@ -23,7 +23,7 @@ class LectureController extends Controller
     public function show($id)
     {
         $lectures = Lecture::where('course_id',$id)->get();
-        return $this->apiResponse('تم رجوع بيانات المحاضرات بنجاح',LectureResource::collection($lectures),$lectures,true,Response::HTTP_OK);
+        return $this->apiResponse('تم رجوع بيانات المحاضرات بنجاح',LectureResource::collection($lectures),true,Response::HTTP_OK);
     }
 
     public function store(LectureRequest $request)

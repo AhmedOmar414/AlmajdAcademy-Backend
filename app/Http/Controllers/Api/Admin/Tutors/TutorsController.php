@@ -21,7 +21,7 @@ class TutorsController extends Controller
     public function index()
     {
         $tutors = User::where('user_type_id',User::TUTOR)->get();
-        return $this->apiResponse('تم رجوع بيانات المعلمين بنجاح',TutorResource::collection($tutors),$tutors,true,Response::HTTP_OK);
+        return $this->apiResponse('تم رجوع بيانات المعلمين بنجاح',TutorResource::collection($tutors),true,Response::HTTP_OK);
     }
 
 

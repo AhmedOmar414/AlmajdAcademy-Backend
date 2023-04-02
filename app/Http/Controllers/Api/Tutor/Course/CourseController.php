@@ -19,7 +19,7 @@ class CourseController extends Controller
     public function index()
     {
         $courses = Course::where('tutor_id',auth()->user()->id)->get();
-        return $this->apiResponse('تم رجوع بيانات الكورسات بنجاح',CourseResource::collection($courses),$courses,true,Response::HTTP_OK);
+        return $this->apiResponse('تم رجوع بيانات الكورسات بنجاح',CourseResource::collection($courses),true,Response::HTTP_OK);
     }
 
     public function store(CourseRequest $request)
