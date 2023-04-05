@@ -29,12 +29,12 @@ class LectureController extends Controller
     public function store(LectureRequest $request)
     {
         $data = $request->all();
+        $course = Course::find($data['course_id']);
+        $data['family_id'] = $course->family_id;
         $data['attended'] = Lecture::ATTENDED;
-
         $lecture = Lecture::create($data);
-
         //calculate billing
-        $this->calculateBilling($lecture,$data);
+        $this->calculateBilling($lecture,$data,$data['family_id']);
 
         return $this->createdSuccessfully('تم اضافه المحاضره بنجاح',true,Response::HTTP_OK);
     }
@@ -60,10 +60,10 @@ class LectureController extends Controller
         return $this->deletedSuccessfully('تم حذف المحاضره بنجاح',true,Response::HTTP_OK);
     }
 
-    private function calculateBilling($lecture,$data){
+    private function calculateBilling($lecture,$data,$family_id){
 
         $billing['tutor_id'] = auth()->user()->id;
-        $billing['family_id'] = $data['family_id'];
+        $billing['family_id'] = $family_id;
         $billing['lecture_id'] = $lecture->id;
         $billing['currency_id'] = Family::find($data['family_id'])->currency->id;
         $billing['hour_rate'] = Family::find($data['family_id'])->hour_price;
