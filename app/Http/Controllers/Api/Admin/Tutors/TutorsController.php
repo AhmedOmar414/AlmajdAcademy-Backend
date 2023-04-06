@@ -71,6 +71,7 @@ class TutorsController extends Controller
         if (is_null($tutor)){
             return $this->noDataRelatedToThisID('لم يتم العثور علي معلمين مرتبطه برقم التعريف هذا',false,Response::HTTP_NO_CONTENT);
         }
+        FamilyTutor::where('user_id',$tutor->id)->delete();
         $tutor->delete();
         return $this->deletedSuccessfully('تم حذف المعلم بنجاح',true,Response::HTTP_OK);
     }
