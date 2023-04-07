@@ -33,4 +33,12 @@ class IndexController extends Controller
         $total_families = User::find(auth()->user()->id)->families->count();
         return $this->apiResponse('اجمالي الأسر',['total_families'=>$total_families],true,Response::HTTP_OK);
     }
+    public function totalLectures(){
+        $total_courses = Course::where('tutor_id',auth()->user()->id)->get();
+        $lectures = 0;
+        foreach ($total_courses as $total_course){
+            $lectures += $total_course->lectures->count();
+        }
+        return $this->apiResponse('اجمالي المحاضرات',['total_lectures'=>$lectures],true,Response::HTTP_OK);
+    }
 }

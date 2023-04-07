@@ -48,6 +48,10 @@ Route::group(['middleware'=>['auth:sanctum','admin']],function (){
 
     //reports
     Route::post('family-billing-report',[\App\Http\Controllers\Api\Admin\Reports\ReportsController::class,'familyBillingReport']);
+
+    //pdf billings
+    Route::post('get-pdf-billing',[\App\Http\Controllers\Api\Admin\PdfBillings\PdfBillingsController::class,'generateBillingPdf']);
+
 });
 
 //TUTOR
@@ -61,5 +65,6 @@ Route::group(['middleware'=>['auth:sanctum']],function (){
     Route::get('/tutor-total-month-hours',[\App\Http\Controllers\Api\Tutor\Statistics\IndexController::class,'totalMonthHours']);
     Route::get('/tutor-total-courses',[\App\Http\Controllers\Api\Tutor\Statistics\IndexController::class,'totalCourses']);
     Route::get('/tutor-total-families',[\App\Http\Controllers\Api\Tutor\Statistics\IndexController::class,'totalFamilies']);
+    Route::get('/tutor-total-lectures',[\App\Http\Controllers\Api\Tutor\Statistics\IndexController::class,'totalLectures']);
 
 });
