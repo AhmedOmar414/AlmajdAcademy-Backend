@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Tutor\Statistics;
 
 use App\Http\Controllers\Controller;
+use App\Models\Billing;
 use App\Models\Course;
 use App\Models\User;
 use App\Traits\Helpers\ApiResponseTrait;
@@ -16,11 +17,8 @@ class IndexController extends Controller
     use ApiResponseTrait;
 
     public function totalMonthHours(){
-        $currentDay = Carbon::today(); //returns current day
-        $firstDay = new Carbon('first day of this month');
-        $lectures = DB::table('courses')->where('tutor_id',auth()->user()->id)->join('lectures','lectures.course_id','=','courses.id')
-        ->select('*')->get();
-        $total_hours = $lectures->whereBetween('created_at',[$firstDay,$currentDay])->sum('lecture_duration');
+        $currentMonth = \Carbon\Carbon::now()->format('m');
+        $total_hours = Billing::where('tutor_id',auth()->user()->id)->where('month',$currentMonth)->sum('lecture_duration');
         return $this->apiResponse('اجمالي ساعات الشهر للمعلم',['total_hours'=>$total_hours],true,Response::HTTP_OK);
     }
 
