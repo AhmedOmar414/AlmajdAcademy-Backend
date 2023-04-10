@@ -17,8 +17,9 @@ class FamilyRequest extends FormRequest
         return [
             'name'=>['required','max:50'],
             'hour_price'=>['required'],
-            'whatsapp_number'=>['required','numeric','digits:11'],
-            'currency'=>['required'],
+            'whatsapp_number'=>['required','numeric'],
+            'currency_id'=>['required'],
+            'country_code'=>'',
         ];
     }
 }

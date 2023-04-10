@@ -1,17 +1,14 @@
 <?php
 
+use App\Models\Billing;
+use App\Models\Course;
+use App\Models\Family;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Api\Login\LoginController;
+use Twilio\Rest\Client;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
-*/
-Route::post('login',[LoginController::class,'login']);
+Route::get('login',[LoginController::class,'login']);
+Route::post('whatsapp/send-test-message', function (){return "sdfds";});
+

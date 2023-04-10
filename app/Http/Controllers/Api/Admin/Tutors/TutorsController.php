@@ -7,7 +7,10 @@ use App\Http\Requests\Api\Admin\Tutors\TutorRequest;
 use App\Http\Requests\Api\Admin\Tutors\TutorUpdateRequest;
 use App\Http\Resources\Api\Admin\Families\FamilyResource;
 use App\Http\Resources\Api\Admin\Tutors\TutorResource;
+use App\Models\Billing;
+use App\Models\Course;
 use App\Models\FamilyTutor;
+use App\Models\Lecture;
 use App\Models\TutorFamilies;
 use App\Models\User;
 use App\Traits\Helpers\ApiResponseTrait;
@@ -20,8 +23,8 @@ class TutorsController extends Controller
     use ApiResponseTrait;
     public function index()
     {
-        $tutors = User::where('user_type_id',User::TUTOR)->paginate(10);
-        return $this->apiResponseWithPaginate('تم رجوع بيانات المعلمين بنجاح',TutorResource::collection($tutors),$tutors,true,Response::HTTP_OK);
+        $tutors = User::where('user_type_id',User::TUTOR)->get();
+        return $this->apiResponse('تم رجوع بيانات المعلمين بنجاح',TutorResource::collection($tutors),true,Response::HTTP_OK);
     }
 
 
@@ -33,7 +36,7 @@ class TutorsController extends Controller
 
         $user = User::create($data);
 
-        $families = json_decode($data['families']);
+        $families = $data['families'];
         foreach ($families as $family){
             FamilyTutor::create(['user_id'=>$user->id,'family_id'=>$family]);
         }
@@ -71,7 +74,14 @@ class TutorsController extends Controller
         if (is_null($tutor)){
             return $this->noDataRelatedToThisID('لم يتم العثور علي معلمين مرتبطه برقم التعريف هذا',false,Response::HTTP_NO_CONTENT);
         }
+        FamilyTutor::where('user_id',$tutor->id)->delete();
         $tutor->delete();
+        $courses = Course::where('tutor_id',$tutor->id)->get();
+        foreach ($courses as $cours){
+            Lecture::where('course_id',$cours)->delete();
+        }
+        $courses = Course::where('tutor_id',$tutor->id)->delete();
+        $billings = Billing::where('tutor_id',$tutor->id)->delete();
         return $this->deletedSuccessfully('تم حذف المعلم بنجاح',true,Response::HTTP_OK);
     }
 }

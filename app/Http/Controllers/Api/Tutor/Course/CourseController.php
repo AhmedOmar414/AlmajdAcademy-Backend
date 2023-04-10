@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Tutor\Course;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Tutor\Courses\CourseRequest;
 use App\Http\Resources\Api\Tutor\Courses\CourseResource;
+use App\Http\Resources\Api\Tutor\Lectures\LectureResource;
 use App\Models\Course;
 use App\Models\Family;
 use App\Traits\Helpers\ApiResponseTrait;
@@ -18,8 +19,8 @@ class CourseController extends Controller
 
     public function index()
     {
-        $courses = Course::where('tutor_id',auth()->user()->id)->paginate(10);
-        return $this->apiResponseWithPaginate('تم رجوع بيانات الكورسات بنجاح',CourseResource::collection($courses),$courses,true,Response::HTTP_OK);
+        $courses = Course::where('tutor_id',auth()->user()->id)->get();
+        return $this->apiResponse('تم رجوع بيانات الكورسات بنجاح',CourseResource::collection($courses),true,Response::HTTP_OK);
     }
 
     public function store(CourseRequest $request)
@@ -52,5 +53,14 @@ class CourseController extends Controller
         }
         $course->delete();
         return $this->deletedSuccessfully('تم حذف الكورس بنجاح',true,Response::HTTP_OK);
+    }
+
+    public function courseLecture($id){
+        try {
+            $lectures = Course::find($id)->lectures;
+            return $this->apiResponse('تم رجوع بيانات المحاضرات بنجاح',LectureResource::collection($lectures),true,Response::HTTP_OK);
+        }catch (\Exception $ex){
+            return $this->apiResponse('تم رجوع بيانات المحاضرات بنجاح',null,true,Response::HTTP_OK);
+        }
     }
 }

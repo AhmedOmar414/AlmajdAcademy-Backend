@@ -14,6 +14,8 @@ class FamilyResource extends JsonResource
             'name'=>$this->name,
             'hour_price'=>$this->hour_price,
             'whatsapp_number'=>$this->whatsapp_number,
+            'country_code'=>$this->country_code,
+            'currency'=>$this->currency->name ?? '',
         ];
     }
 }
