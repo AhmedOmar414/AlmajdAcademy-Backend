@@ -25,7 +25,7 @@ class IndexController extends Controller
 
     }
     public function totalTutors(){
-        $tutors = User::where('user_type',User::TUTOR)->count();
+        $tutors = User::where('user_type_id',User::TUTOR)->count();
         return $this->apiResponse('اجمالي',['tutors'=>$tutors],true,Response::HTTP_OK);
     }
     public function totalFamilies(){
