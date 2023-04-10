@@ -53,13 +53,15 @@ class TutorsController extends Controller
         if (is_null($tutor)){
             return $this->noDataRelatedToThisID('لم يتم العثور علي معلمين مرتبطه برقم التعريف هذا',false,Response::HTTP_NO_CONTENT);
         }
-        if ($data['password']){
+        if (!$request->password){
+            $data['password'] = $tutor->password;
+        }else{
             $data['password'] = Hash::make($data['password']);
         }
         $data['user_type_id'] = User::TUTOR;
 
         //update tutor families
-        $families = json_decode($data['families']);
+        $families = $data['families'];
 
         $tutor->update($data);
         $tutor->families()->sync($families);
