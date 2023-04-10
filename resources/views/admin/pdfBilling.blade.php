@@ -41,7 +41,7 @@
     <tbody>
     @foreach ($billings as $billing)
         <tr>
-            <td style="font-family: 'Arabic Typesetting'">{{ $billing->tutor->email }}</td>
+            <td style="font-family: 'Arabic Typesetting'">{{ $billing->tutor->email ?? '' }}</td>
             <td>{{ $billing->currency->symbol }}</td>
             <td>{{ $billing->hour_rate}}</td>
             <td>{{ \Carbon\Carbon::parse($billing->created_at)->format('d/m/Y') }}</td>
