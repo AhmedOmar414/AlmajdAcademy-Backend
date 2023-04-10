@@ -25,7 +25,7 @@ class TutorUpdateRequest extends FormRequest
         return [
             'name'=>['required','max:50'],
             'email'=>['required','max:50'],
-            'password'=>['required'],
+            'password'=>'',
             'families.*'=>['required','numeric'],
         ];
     }
