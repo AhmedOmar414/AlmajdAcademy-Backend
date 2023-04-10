@@ -36,9 +36,13 @@ Route::group(['middleware'=>['auth:sanctum','admin']],function (){
 
 
     //statistics
-    Route::get('/tutor-admin-total-profits',[\App\Http\Controllers\Api\Admin\Statistics\IndexController::class,'totalMonthProfit']);
-    Route::get('/tutor-admin-total-courses',[\App\Http\Controllers\Api\Admin\Statistics\IndexController::class,'totalCourses']);
-    Route::get('/tutor-admin-total-families',[\App\Http\Controllers\Api\Admin\Statistics\IndexController::class,'totalFamilies']);
+    Route::get('/total-dollars',[\App\Http\Controllers\Api\Admin\Statistics\IndexController::class,'totalDollars']);
+    Route::get('/total-euro',[\App\Http\Controllers\Api\Admin\Statistics\IndexController::class,'totalEuro']);
+    Route::get('/total-candain-dollar',[\App\Http\Controllers\Api\Admin\Statistics\IndexController::class,'totalCandainDollar']);
+    Route::get('/total-pound',[\App\Http\Controllers\Api\Admin\Statistics\IndexController::class,'totalPound']);
+    Route::get('/total-families',[\App\Http\Controllers\Api\Admin\Statistics\IndexController::class,'totalFamilies']);
+    Route::get('/total-tutors',[\App\Http\Controllers\Api\Admin\Statistics\IndexController::class,'totalTutors']);
+    Route::get('/total-hours',[\App\Http\Controllers\Api\Admin\Statistics\IndexController::class,'totalHours']);
 
     //currencies
     Route::get('/get-currencies',[\App\Http\Controllers\Api\Admin\Currency\CurrencyController::class,'currencies']);
