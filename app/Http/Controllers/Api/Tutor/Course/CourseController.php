@@ -58,15 +58,24 @@ class CourseController extends Controller
 
     public function courseLecture($id){
         try {
+            $lectures = Course::find($id)->lectures;
+            return $this->apiResponse('تم رجوع بيانات المحاضرات بنجاح',LectureResource::collection($lectures),true,Response::HTTP_OK);
+        }catch (\Exception $ex){
+            return $this->apiResponse('تم رجوع بيانات المحاضرات بنجاح',null,true,Response::HTTP_OK);
+        }
+    }
+
+/*    public function courseLecture($id){
+        try {
             // Retrieve all lectures from the database and group them by month name
             $lectures = Course::find($id)->lectures->groupBy(function($lecture) {
                 return Carbon::parse($lecture->lecture_date)->format('F');
             });
 
-           // Create an array to hold the list of month objects
+            // Create an array to hold the list of month objects
             $lectureList = [];
 
-           // Loop through the grouped lectures and create a new object for each month
+            // Loop through the grouped lectures and create a new object for each month
             foreach($lectures as $monthName => $monthLectures) {
                 $monthObject = new \stdClass();
                 $monthObject->month = $monthName;
@@ -79,4 +88,5 @@ class CourseController extends Controller
             return $this->apiResponse('تم رجوع بيانات المحاضرات بنجاح',null,true,Response::HTTP_OK);
         }
     }
+*/
 }
