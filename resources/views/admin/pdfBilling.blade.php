@@ -25,7 +25,7 @@
 <body>
     <h1 style="text-align: center">Elmajd Academy</h1>
     <h3 style="text-align: center">Family Monthly Report</h3>
-<table>
+<table style="margin-right: 500px">
     <thead>
     <tr>
         <th>Tutor</th>
