@@ -16,6 +16,7 @@ class Billing extends Model
         'lecture_duration',
         'month',
         'year',
+        'is_paid',
         'amount',
         'lecture_id',
     ];

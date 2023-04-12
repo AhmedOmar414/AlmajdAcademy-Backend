@@ -23,4 +23,8 @@ class Family extends Model
     public function currency(){
         return $this->belongsTo(Currency::class,'currency_id');
     }
+
+    public function billings(){
+        return $this->hasMany(Billing::class);
+    }
 }

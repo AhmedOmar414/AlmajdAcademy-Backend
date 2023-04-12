@@ -18,6 +18,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 //ADMIN
+//paypal
+//Route::get('/create-payment-link', 'BillingController@sendPaymentLinks');
+
+
 Route::group(['middleware'=>['auth:sanctum','admin']],function (){
 //
 //    Route::apiResource('/families','\App\Http\Controllers\Api\Admin\Family\FamiliesController');
@@ -55,6 +59,10 @@ Route::group(['middleware'=>['auth:sanctum','admin']],function (){
 
     //pdf billings
     Route::post('get-pdf-billing',[\App\Http\Controllers\Api\Admin\PdfBillings\PdfBillingsController::class,'generateBillingPdf']);
+
+
+
+
 
 });
 
