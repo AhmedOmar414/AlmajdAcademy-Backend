@@ -705,6 +705,19 @@
       'secret' => '',
       'region' => 'us-east-1',
     ),
+    'paypal' => 
+    array (
+      'client_id' => 'AWN9umVJZIzYQlo-lWS3ObnZOAKwaTYoz9gTXxSeHD61-BSMhjbBnQ2AlDqO6KPfrKEgzyJ1IxOa3CGZ',
+      'secret' => 'EBkCiNDRr3igg0nQlElCKuBeyOFBkMehS-dAInvZWGoOO9R9Te97pbEbjC8pjHRxwGanzvJDk7qMkZx2',
+      'settings' => 
+      array (
+        'mode' => 'sandbox',
+        'http.ConnectionTimeOut' => 30,
+        'log.LogEnabled' => true,
+        'log.FileName' => 'E:\\Software Projects\\Elmajd Backend\\ElmajdAcademy\\storage/logs/paypal.log',
+        'log.LogLevel' => 'ERROR',
+      ),
+    ),
   ),
   'session' => 
   array (
@@ -804,6 +817,7 @@
       15 => 'Spatie\\LaravelIgnition\\Solutions\\SolutionProviders\\MissingLivewireComponentSolutionProvider',
       16 => 'Spatie\\LaravelIgnition\\Solutions\\SolutionProviders\\UndefinedViewVariableSolutionProvider',
       17 => 'Spatie\\LaravelIgnition\\Solutions\\SolutionProviders\\GenericLaravelExceptionSolutionProvider',
+      18 => 'Spatie\\LaravelIgnition\\Solutions\\SolutionProviders\\OpenAiSolutionProvider',
     ),
     'ignored_solution_providers' => 
     array (
@@ -820,6 +834,7 @@
       2 => 'Spatie\\LaravelIgnition\\Recorders\\LogRecorder\\LogRecorder',
       3 => 'Spatie\\LaravelIgnition\\Recorders\\QueryRecorder\\QueryRecorder',
     ),
+    'open_ai_key' => NULL,
   ),
   'tinker' => 
   array (

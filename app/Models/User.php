@@ -35,4 +35,8 @@ class User extends Authenticatable
     public function families(){
         return $this->belongsToMany(Family::class,'family_tutor');
     }
+
+    public function billings(){
+        return $this->hasMany(Billing::class,'tutor_id');
+    }
 }

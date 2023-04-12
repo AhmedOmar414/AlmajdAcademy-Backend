@@ -24,6 +24,8 @@ class PdfBillingsController extends Controller
 
         $billing = Billing::where('family_id',$data['family_id'])->where('month',$data['month'])->get();
         $pdf = PDF\Pdf::loadView('admin.pdfBilling',['billings'=>$billing,'family'=>$family]);
+        $pdf->setPaper('a4', 'landscape');
+
         $headers = [
             'Content-Type' => 'application/pdf',
             'Content-Disposition' => 'attachment; filename="file.pdf"'
