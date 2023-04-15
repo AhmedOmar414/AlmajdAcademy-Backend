@@ -8,6 +8,7 @@ use App\Http\Resources\Api\Tutor\Courses\CourseResource;
 use App\Http\Resources\Api\Tutor\Lectures\LectureResource;
 use App\Models\Course;
 use App\Models\Family;
+use App\Models\Lecture;
 use App\Traits\Helpers\ApiResponseTrait;
 use App\Traits\Helpers\PaginationTrait;
 use Carbon\Carbon;
@@ -56,9 +57,11 @@ class CourseController extends Controller
         return $this->deletedSuccessfully('تم حذف الكورس بنجاح',true,Response::HTTP_OK);
     }
 
-    public function courseLecture($id){
+    public function courseLecture($id,Request $request){
         try {
-            $lectures = Course::find($id)->lectures;
+            $lectures = Lecture::where('course_id', $id)
+                ->whereMonth('lecture_date', $request->month)
+                ->get();
             return $this->apiResponse('تم رجوع بيانات المحاضرات بنجاح',LectureResource::collection($lectures),true,Response::HTTP_OK);
         }catch (\Exception $ex){
             return $this->apiResponse('تم رجوع بيانات المحاضرات بنجاح',null,true,Response::HTTP_OK);
