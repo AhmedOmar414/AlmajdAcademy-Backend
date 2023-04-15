@@ -79,7 +79,7 @@ Route::group(['middleware'=>['auth:sanctum']],function (){
     Route::apiResource('/courses','\App\Http\Controllers\Api\Tutor\Course\CourseController');
     Route::apiResource('/lectures','\App\Http\Controllers\Api\Tutor\Lecture\LectureController');
     Route::get('/get-tutor-families',[\App\Http\Controllers\Api\Tutor\Familis\IndexController::class,'index']);
-    Route::get('/get-course-lectures/{id}',[\App\Http\Controllers\Api\Tutor\Course\CourseController::class,'courseLecture']);
+    Route::post('/get-course-lectures/{id}',[\App\Http\Controllers\Api\Tutor\Course\CourseController::class,'courseLecture']);
 
     //statistics
     Route::get('/tutor-total-month-hours',[\App\Http\Controllers\Api\Tutor\Statistics\IndexController::class,'totalMonthHours']);
