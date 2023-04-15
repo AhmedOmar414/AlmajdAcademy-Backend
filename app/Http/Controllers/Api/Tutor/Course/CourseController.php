@@ -56,16 +56,16 @@ class CourseController extends Controller
         return $this->deletedSuccessfully('تم حذف الكورس بنجاح',true,Response::HTTP_OK);
     }
 
-    public function courseLecture($id){
-        try {
-            $lectures = Course::find($id)->lectures;
-            return $this->apiResponse('تم رجوع بيانات المحاضرات بنجاح',LectureResource::collection($lectures),true,Response::HTTP_OK);
-        }catch (\Exception $ex){
-            return $this->apiResponse('تم رجوع بيانات المحاضرات بنجاح',null,true,Response::HTTP_OK);
-        }
-    }
+//    public function courseLecture($id){
+//        try {
+//            $lectures = Course::find($id)->lectures;
+//            return $this->apiResponse('تم رجوع بيانات المحاضرات بنجاح',LectureResource::collection($lectures),true,Response::HTTP_OK);
+//        }catch (\Exception $ex){
+//            return $this->apiResponse('تم رجوع بيانات المحاضرات بنجاح',null,true,Response::HTTP_OK);
+//        }
+//    }
 
-/*    public function courseLecture($id){
+    public function courseLecture($id){
         try {
             // Retrieve all lectures from the database and group them by month name
             $lectures = Course::find($id)->lectures->groupBy(function($lecture) {
@@ -88,5 +88,5 @@ class CourseController extends Controller
             return $this->apiResponse('تم رجوع بيانات المحاضرات بنجاح',null,true,Response::HTTP_OK);
         }
     }
-*/
+
 }
