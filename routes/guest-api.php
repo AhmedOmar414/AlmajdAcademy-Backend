@@ -25,7 +25,7 @@ Route::get('/update-billings',function (){
     foreach ($lectures as $lecture){
         $data['family_id'] = $lecture->family_id;
         $billing['family_id'] = $data['family_id'];
-        $billing['tutor_id'] = $lecture->course->tutor_id;
+        $billing['tutor_id'] = $lecture->course()->tutor_sfhdid ?? 0;
         $billing['lecture_id'] = $lecture->id;
         $billing['currency_id'] = Family::find($data['family_id'])->currency->id;
         $billing['hour_rate'] = Family::find($data['family_id'])->hour_price;
@@ -37,4 +37,12 @@ Route::get('/update-billings',function (){
     }
     dd("done ya bro");
 
+});
+Route::post('/calculate-tutor-billings', function (Request $request){
+    $courses = Course::where('tutor_id',$request->id)->get();
+    $total = 0;
+    foreach ($courses as $cours){
+      $total += $cours->lectures->sum('lecture_duration');
+    }
+    dd($total);
 });
