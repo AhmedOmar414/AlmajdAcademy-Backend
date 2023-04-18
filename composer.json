@@ -14,7 +14,8 @@
         "laravel/tinker": "^2.8",
         "paypal/rest-api-sdk-php": "^1.6",
         "twilio/sdk": "^7.0",
-        "webpatser/laravel-countries": "^1.5"
+        "webpatser/laravel-countries": "^1.5",
+      "ext-curl": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

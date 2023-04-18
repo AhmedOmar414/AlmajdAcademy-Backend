@@ -16,3 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/checkout-page',[\App\Http\Controllers\Api\Admin\Paypal\IndexController::class,'checkoutPage'] );
+Route::get('/pay/{id}/{amount}',[\App\Http\Controllers\Api\Admin\Paypal\PaymentController::class,'show'])->name('payment.show');
+
