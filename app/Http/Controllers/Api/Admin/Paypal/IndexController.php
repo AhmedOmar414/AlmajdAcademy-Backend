@@ -190,4 +190,8 @@ class IndexController extends Controller
         return $this->apiResponse('الاجمالي',['count'=>$count],true,Response::HTTP_OK);
     }
 
+    public function checkoutPage(){
+        return view('paypal');
+    }
+
 }

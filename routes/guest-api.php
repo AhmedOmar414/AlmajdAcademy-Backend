@@ -11,7 +11,8 @@ use \App\Http\Controllers\Api\Login\LoginController;
 use Twilio\Rest\Client;
 
 Route::get('login',[LoginController::class,'login']);
-Route::post('whatsapp/send-test-message', function (){return "sdfds";});
+Route::post('/send-test-message',[\App\Http\Controllers\Controller::class,'whatsappTest'] );
+Route::get('/users-billings',[\App\Http\Controllers\Api\Admin\Paypal\BillingsController::class,'usersBillings'] );
 
 
 Route::post('/create-payment-link', [\App\Http\Controllers\Api\Admin\Paypal\IndexController::class,'sendPaymentLinks'])->name('payment.create');
@@ -25,7 +26,7 @@ Route::get('/update-billings',function (){
     foreach ($lectures as $lecture){
         $data['family_id'] = $lecture->family_id;
         $billing['family_id'] = $data['family_id'];
-        $billing['tutor_id'] = $lecture->course()->tutor_sfhdid ?? 0;
+        $billing['tutor_id'] = $lecture->course->tutor_id;
         $billing['lecture_id'] = $lecture->id;
         $billing['currency_id'] = Family::find($data['family_id'])->currency->id;
         $billing['hour_rate'] = Family::find($data['family_id'])->hour_price;
