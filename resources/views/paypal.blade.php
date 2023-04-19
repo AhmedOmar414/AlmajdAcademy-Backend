@@ -7,19 +7,22 @@
 <body>
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Pay with PayPal or Debit/Credit Card</div>
-
+        <div class="col-md-8" style="display: flex;align-items: center;justify-content: center">
+            <div class="card" >
+                <h3 style="font-family: Calibri">Hello : {{\App\Models\Family::find($user->id)->name}} </h3>
+                <h3 style="font-family: Calibri">This is {{\Carbon\Carbon::now()->format('M')}} billings amount</h3>
+                <h3 style="font-family: Calibri">Total Amount : {{$amount}} {{\App\Models\Family::find($user->id)->currency->symbol}}</h3>
                 <div class="card-body">
-                    <div id="paypal-button-container"></div>
+                    <div id="paypal-button-container"  style="width: 150%"></div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
+@php
+    $currency = \App\Models\Family::find($user->id)->currency->symbol;
+@endphp
+<script src="https://www.paypal.com/sdk/js?client-id=AWJGNrnkZAi6MGJcFHJJ9A4TDQGDnfGFf5HeehCIwiHuEE9rA8G_WJeV3ZOApUWMlqgl1jHgBjDpAty8&currency={{$currency}}"></script>
 <script>
     paypal.Buttons({
         createOrder: function(data, actions) {
@@ -27,7 +30,7 @@
             return actions.order.create({
                 purchase_units: [{
                     amount: {
-                        value: '{{ $amount }}'
+                        value: '{{ $amount }}',
                     }
                 }]
             });

@@ -40,10 +40,11 @@
       19 => 'Illuminate\\Translation\\TranslationServiceProvider',
       20 => 'Illuminate\\Validation\\ValidationServiceProvider',
       21 => 'Illuminate\\View\\ViewServiceProvider',
-      22 => 'App\\Providers\\AppServiceProvider',
-      23 => 'App\\Providers\\AuthServiceProvider',
-      24 => 'App\\Providers\\EventServiceProvider',
-      25 => 'App\\Providers\\RouteServiceProvider',
+      22 => 'Srmklive\\PayPal\\Providers\\PayPalServiceProvider',
+      23 => 'App\\Providers\\AppServiceProvider',
+      24 => 'App\\Providers\\AuthServiceProvider',
+      25 => 'App\\Providers\\EventServiceProvider',
+      26 => 'App\\Providers\\RouteServiceProvider',
     ),
     'aliases' => 
     array (
@@ -610,6 +611,27 @@
       ),
     ),
   ),
+  'paypal' => 
+  array (
+    'mode' => 'sandbox',
+    'sandbox' => 
+    array (
+      'client_id' => 'AWJGNrnkZAi6MGJcFHJJ9A4TDQGDnfGFf5HeehCIwiHuEE9rA8G_WJeV3ZOApUWMlqgl1jHgBjDpAty8',
+      'client_secret' => 'EGfzgJRHrlzV6CPcRUk4vqjlXxNNHzS6AqzxDnEK5LXT8EYVcmF_ve-3Xt343wKsJOsImryZ6raFrSoA',
+      'app_id' => 'APP-80W284485P519543T',
+    ),
+    'live' => 
+    array (
+      'client_id' => '',
+      'client_secret' => '',
+      'app_id' => '',
+    ),
+    'payment_action' => 'Sale',
+    'currency' => 'USD',
+    'notify_url' => '',
+    'locale' => 'en_US',
+    'validate_ssl' => true,
+  ),
   'queue' => 
   array (
     'default' => 'sync',
@@ -707,8 +729,8 @@
     ),
     'paypal' => 
     array (
-      'client_id' => 'AWN9umVJZIzYQlo-lWS3ObnZOAKwaTYoz9gTXxSeHD61-BSMhjbBnQ2AlDqO6KPfrKEgzyJ1IxOa3CGZ',
-      'secret' => 'EBkCiNDRr3igg0nQlElCKuBeyOFBkMehS-dAInvZWGoOO9R9Te97pbEbjC8pjHRxwGanzvJDk7qMkZx2',
+      'client_id' => NULL,
+      'secret' => NULL,
       'settings' => 
       array (
         'mode' => 'sandbox',
