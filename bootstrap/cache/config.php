@@ -616,8 +616,8 @@
     'mode' => 'sandbox',
     'sandbox' => 
     array (
-      'client_id' => 'AfQ-_gpU444E73XUYOGUl1RoVxvNiGzFfw2MsCJ_cpYEf07qvZ09KM0YRp1RCGZ0PB65oYSniL-6HUbI',
-      'client_secret' => 'EFXczkeawzpUaY7BEwz2jdQOlwP0TiFF_5-P5ojZm67vnmlID1jXmPKlq1o6kDDds44ykB9zLeeG3Ml4',
+      'client_id' => 'AbjwZL5uSWPJ3qiM9VMeYD-GdyjlR9RQZZE15ueEg8gVA9Tv3TjMrJHZr0QHOLfXL6_82INbnttAEkQi',
+      'client_secret' => 'EH-mP93yukrbmiurIKteYXvl3QuvX2l-HOKW3xKkMkExAm38pHX54uan5zAOXIxlojK7vJCJjVsUe6Gr',
       'app_id' => 'APP-80W284485P519543T',
     ),
     'live' => 
