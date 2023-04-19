@@ -41,6 +41,10 @@
                 // Redirect to success page or display success message
                 window.location.href = '/success?user_id={{ $user->id }}&amount={{ $amount }}&transaction_id=' + details.id;
             });
+        },
+        onCancel: function() {
+            // Redirect the user to the cancelPayment method in your Laravel controller
+            window.location.href = '/cancel';
         }
     }).render('#paypal-button-container');
 </script>
