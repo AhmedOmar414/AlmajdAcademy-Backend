@@ -20,6 +20,7 @@ class BillingsController extends Controller
 
             $userObject['user_id'] = $family->id;
             $userObject['mobile_number'] = $family->whatsapp_number;
+            $userObject['family_name'] = $family->name;
             $userObject['currency_name'] = $family->currency->name;
             $userObject['currency_sumbol'] = $family->currency->symbol;
             $userObject['totalAmount'] = $totalAmount;
