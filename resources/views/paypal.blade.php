@@ -22,7 +22,7 @@
 @php
     $currency = \App\Models\Family::find($user->id)->currency->symbol;
 @endphp
-<script src="https://www.paypal.com/sdk/js?client-id=AWJGNrnkZAi6MGJcFHJJ9A4TDQGDnfGFf5HeehCIwiHuEE9rA8G_WJeV3ZOApUWMlqgl1jHgBjDpAty8&currency={{$currency}}"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=AfQ-_gpU444E73XUYOGUl1RoVxvNiGzFfw2MsCJ_cpYEf07qvZ09KM0YRp1RCGZ0PB65oYSniL-6HUbI&currency={{$currency}}"></script>
 <script>
     paypal.Buttons({
         createOrder: function(data, actions) {
