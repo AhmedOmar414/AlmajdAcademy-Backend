@@ -86,4 +86,7 @@ class PaymentController extends Controller
         Billing::where('family_id',$userId)->update(['is_paid'=>1]);
         return view('success');
     }
+    public function cancel(){
+        return view('cancel');
+    }
 }

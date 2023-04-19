@@ -23,3 +23,4 @@ Route::get('/pay/{id}/{amount}',[\App\Http\Controllers\Api\Admin\Paypal\PaymentC
 Route::post('/create-order', [\App\Http\Controllers\Api\Admin\Paypal\PaymentController::class,'createOrder'])->name('create-order');
 Route::get('/capture-order', [\App\Http\Controllers\Api\Admin\Paypal\PaymentController::class,'captureOrder'])->name('capture-order');
 Route::get('/success', [\App\Http\Controllers\Api\Admin\Paypal\PaymentController::class,'success'])->name('success');
+Route::get('/cancel', [\App\Http\Controllers\Api\Admin\Paypal\PaymentController::class,'cancel'])->name('cancel');
