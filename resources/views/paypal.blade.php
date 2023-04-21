@@ -1,5 +1,12 @@
-
-<!DOCTYPE html>
+@php
+    $count = \App\Models\Family::where('id',$user->id)->whereHas('billings', function($query) {
+            $query->where('is_paid', 1);
+        })->count();
+@endphp
+    @if($count>0)
+        <script>window.location.href = "/success";</script>
+    @else
+    <!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -46,4 +53,6 @@
 </script>
 </body>
 </html>
+    @endif
+
 
