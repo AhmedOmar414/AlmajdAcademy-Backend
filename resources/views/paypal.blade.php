@@ -1,10 +1,11 @@
 @php
-    $count = \App\Models\Family::where('id',$user->id)->whereHas('billings', function($query) {
-            $query->where('is_paid', 1);
+
+    $count = \App\Models\Family::where('id',$user->id)->whereHas('billings', function($query) use ($month) {
+            $query->where('month',$month)->where('is_paid', 1);
         })->count();
 @endphp
     @if($count>0)
-        <script>window.location.href = "/success";</script>
+        <script>window.location.href = "/success/{{$month}}";</script>
     @else
     <!DOCTYPE html>
 <html>
@@ -17,7 +18,7 @@
         <div class="col-md-8" style="display: flex;align-items: center;justify-content: center">
             <div class="card" >
                 <h3 style="font-family: Calibri">Hello : {{\App\Models\Family::find($user->id)->name}} </h3>
-                <h3 style="font-family: Calibri">This is {{\Carbon\Carbon::now()->format('M')}} billings amount</h3>
+                <h3 style="font-family: Calibri">This is {{$month}} billings amount</h3>
                 <h3 style="font-family: Calibri">Total Amount : {{$amount}} {{\App\Models\Family::find($user->id)->currency->symbol}}</h3>
                 <div class="card-body">
                     <div id="paypal-button-container"  style="width: 150%"></div>
@@ -46,13 +47,13 @@
             // Capture the funds from the transaction
             return actions.order.capture().then(function(details) {
                 // Redirect to success page or display success message
-                window.location.href = '/success?user_id={{ $user->id }}&amount={{ $amount }}&transaction_id=' + details.id;
+                window.location.href = '/success/{{$month}}?user_id={{ $user->id }}&amount={{ $amount }}';
             });
         }
     }).render('#paypal-button-container');
 </script>
 </body>
 </html>
-    @endif
+@endif
 
 
