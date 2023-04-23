@@ -39,6 +39,7 @@ class BillingsController extends Controller
     public function usersBillingsSearch(Request $request){
         $request->validate(['name'=>'required','month'=>'required']);
         $families = Family::where('name', 'like', '%' . $request->name . '%')->get();
+        $month = $request->month;
         $allPayments = [];
         $userObject = [];
 
@@ -54,7 +55,7 @@ class BillingsController extends Controller
                 $userObject['currency_name'] = $family->currency->name;
                 $userObject['currency_sumbol'] = $family->currency->symbol;
                 $userObject['totalAmount'] = $totalAmount;
-                $userObject['payment_link'] = asset(route('payment.show',['id'=>$family->id,'amount'=>$totalAmount])->with(['month'=>$request->month]));
+                $userObject['payment_link'] = asset(route('payment.show',['id'=>$family->id,'amount'=>$totalAmount,'month'=>$month]));
                 array_push($allPayments,$userObject);
             }
         }
