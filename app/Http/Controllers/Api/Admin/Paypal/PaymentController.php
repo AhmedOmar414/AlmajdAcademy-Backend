@@ -14,14 +14,14 @@ use PayPalHttp\HttpException;
 
 class PaymentController extends Controller
 {
-    public function show($id,$amount){
+    public function show($id,$amount,$month){
         $user = Family::find($id);
 
         if (!$user) {
             abort(404);
         }
 
-        return view('paypal', compact('user', 'amount'));
+        return view('paypal', compact('user', 'amount','month'));
     }
 
     public function createOrder(Request $request)
@@ -80,10 +80,10 @@ class PaymentController extends Controller
         }
     }
 
-    public function success(Request $request)
+    public function success(Request $request,$month)
     {
         $userId = $request->input('user_id');
-        Billing::where('family_id',$userId)->update(['is_paid'=>1]);
+        Billing::where('family_id',$userId)->where('month',$month)->update(['is_paid'=>1]);
         return view('success');
     }
     public function cancel(){

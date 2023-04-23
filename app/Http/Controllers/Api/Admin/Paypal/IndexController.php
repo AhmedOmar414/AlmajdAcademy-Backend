@@ -177,15 +177,15 @@ class IndexController extends Controller
     }
 
 
-    public function paid(){
-        $count = Family::whereHas('billings', function($query) {
-            $query->where('is_paid', 1);
+    public function paid($month){
+        $count = Family::whereHas('billings', function($query) use ($month) {
+            $query->where('is_paid', 1)->where('month',$month);
         })->count();
         return $this->apiResponse('الاجمالي',['count'=>$count],true,Response::HTTP_OK);
     }
-    public function unPaid(){
-        $count = Family::whereHas('billings',function ($query){
-            $query->where('is_paid','!=',1);
+    public function unPaid($month){
+        $count = Family::whereHas('billings',function ($query) use ($month) {
+            $query->where('is_paid','!=',1)->where('month',$month);
         })->count();
         return $this->apiResponse('الاجمالي',['count'=>$count],true,Response::HTTP_OK);
     }

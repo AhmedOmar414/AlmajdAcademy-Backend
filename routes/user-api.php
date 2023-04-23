@@ -61,8 +61,8 @@ Route::group(['middleware'=>['auth:sanctum','admin']],function (){
     Route::post('get-pdf-billing',[\App\Http\Controllers\Api\Admin\PdfBillings\PdfBillingsController::class,'generateBillingPdf']);
 
     //billings
-    Route::get('/paid',[\App\Http\Controllers\Api\Admin\Paypal\IndexController::class,'paid']);
-    Route::get('/unpaid',[\App\Http\Controllers\Api\Admin\Paypal\IndexController::class,'unPaid']);
+    Route::get('/paid/{month}',[\App\Http\Controllers\Api\Admin\Paypal\IndexController::class,'paid']);
+    Route::get('/unpaid/{month}',[\App\Http\Controllers\Api\Admin\Paypal\IndexController::class,'unPaid']);
 
     //salaries
     Route::get('/salaries',[\App\Http\Controllers\Api\Admin\Salaries\IndexController::class,'salaries']);

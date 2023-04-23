@@ -9,12 +9,16 @@ use Illuminate\Http\Request;
 
 class BillingsController extends Controller
 {
-    public function usersBillings(){
+    public function usersBillings(Request $request){
+        $request->validate([
+            'month'=>'required'
+        ]);
+        $month = $request->month;
         $families = Family::all();
         $allPayments = [];
         $userObject = [];
         foreach ($families as $family) {
-            $unpaidBillings = Billing::where('family_id',$family->id)->where('is_paid',0)->get();
+            $unpaidBillings = Billing::where('family_id',$family->id)->where('is_paid',0)->where('month',$request->month)->get();
             $totalAmount = $unpaidBillings->sum('amount');
             if ($totalAmount == 0){
                 continue;
@@ -25,7 +29,7 @@ class BillingsController extends Controller
                 $userObject['currency_name'] = $family->currency->name;
                 $userObject['currency_sumbol'] = $family->currency->symbol;
                 $userObject['totalAmount'] = $totalAmount;
-                $userObject['payment_link'] = asset(route('payment.show',['id'=>$family->id,'amount'=>$totalAmount]));
+                $userObject['payment_link'] = asset(route('payment.show',['id'=>$family->id,'amount'=>$totalAmount,'month'=>$month]));
                 array_push($allPayments,$userObject);
             }
         }
@@ -33,13 +37,13 @@ class BillingsController extends Controller
     }
 
     public function usersBillingsSearch(Request $request){
-        $request->validate(['name'=>'required']);
+        $request->validate(['name'=>'required','month'=>'required']);
         $families = Family::where('name', 'like', '%' . $request->name . '%')->get();
         $allPayments = [];
         $userObject = [];
 
         foreach ($families as $family) {
-            $unpaidBillings = Billing::where('family_id',$family->id)->where('is_paid',0)->get();
+            $unpaidBillings = Billing::where('family_id',$family->id)->where('is_paid',0)->where('month',$request->month)->get();
             $totalAmount = $unpaidBillings->sum('amount');
             if ($totalAmount == 0){
                 continue;
@@ -50,7 +54,7 @@ class BillingsController extends Controller
                 $userObject['currency_name'] = $family->currency->name;
                 $userObject['currency_sumbol'] = $family->currency->symbol;
                 $userObject['totalAmount'] = $totalAmount;
-                $userObject['payment_link'] = asset(route('payment.show',['id'=>$family->id,'amount'=>$totalAmount]));
+                $userObject['payment_link'] = asset(route('payment.show',['id'=>$family->id,'amount'=>$totalAmount])->with(['month'=>$request->month]));
                 array_push($allPayments,$userObject);
             }
         }

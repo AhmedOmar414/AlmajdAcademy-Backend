@@ -12,7 +12,7 @@ use Twilio\Rest\Client;
 
 Route::get('login',[LoginController::class,'login']);
 Route::post('/send-test-message',[\App\Http\Controllers\Controller::class,'whatsappTest'] );
-Route::get('/users-billings',[\App\Http\Controllers\Api\Admin\Paypal\BillingsController::class,'usersBillings'] );
+Route::post('/users-billings',[\App\Http\Controllers\Api\Admin\Paypal\BillingsController::class,'usersBillings'] );
 Route::post('/users-billings/search',[\App\Http\Controllers\Api\Admin\Paypal\BillingsController::class,'usersBillingsSearch'] );
 
 
