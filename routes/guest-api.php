@@ -14,6 +14,7 @@ Route::get('login',[LoginController::class,'login']);
 Route::post('/send-test-message',[\App\Http\Controllers\Controller::class,'whatsappTest'] );
 Route::post('/users-billings',[\App\Http\Controllers\Api\Admin\Paypal\BillingsController::class,'usersBillings'] );
 Route::post('/users-billings/search',[\App\Http\Controllers\Api\Admin\Paypal\BillingsController::class,'usersBillingsSearch'] );
+Route::post('/users-billings-paid',[\App\Http\Controllers\Api\Admin\Paypal\BillingsController::class,'usersBillingsPaid'] );
 
 
 Route::post('/create-payment-link', [\App\Http\Controllers\Api\Admin\Paypal\IndexController::class,'sendPaymentLinks'])->name('payment.create');
