@@ -68,7 +68,11 @@ Route::group(['middleware'=>['auth:sanctum','admin']],function (){
     Route::get('/salaries',[\App\Http\Controllers\Api\Admin\Salaries\IndexController::class,'salaries']);
     Route::post('/salaries',[\App\Http\Controllers\Api\Admin\Salaries\IndexController::class,'salariesCalculate']);
 
-
+    //tutor actions
+    Route::get('tutor-courses/{id}',[\App\Http\Controllers\Api\Admin\TutorActions\ActionsController::class,'tutorCourses']);
+    Route::post('/course-lectures/{id}',[\App\Http\Controllers\Api\Admin\TutorActions\ActionsController::class,'courseLectures']);
+    Route::delete('delete-lecture/{id}',[\App\Http\Controllers\Api\Admin\TutorActions\ActionsController::class,'deleteLecture']);
+    Route::put('update-lecture/{id}',[\App\Http\Controllers\Api\Admin\TutorActions\ActionsController::class,'updateLecture']);
 
 
 
