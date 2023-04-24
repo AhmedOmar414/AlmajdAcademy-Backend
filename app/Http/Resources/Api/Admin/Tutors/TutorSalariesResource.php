@@ -15,7 +15,7 @@ class TutorSalariesResource extends JsonResource
         return [
             'id'=>$this->id,
             'name'=>$this->name,
-            'total_hours'=>User::find($this->id)->billings()->sum('lecture_duration'),
+            'total_hours'=>User::find($this->id)->billings()->where('month',$request->month)->sum('lecture_duration'),
             'salary'=>0
         ];
     }

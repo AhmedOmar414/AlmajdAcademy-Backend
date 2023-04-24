@@ -36,7 +36,7 @@ class IndexController extends Controller
         $total_courses = Course::where('tutor_id',auth()->user()->id)->get();
         $lectures = 0;
         foreach ($total_courses as $total_course){
-            $lectures += $total_course->lectures->where('created_at',$currentMonth)->count();
+            $lectures += $total_course->lectures()->whereMonth('lecture_date',$currentMonth)->count();
         }
         return $this->apiResponse('اجمالي المحاضرات',['total_lectures'=>$lectures],true,Response::HTTP_OK);
     }

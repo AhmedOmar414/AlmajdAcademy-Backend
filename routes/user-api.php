@@ -65,7 +65,7 @@ Route::group(['middleware'=>['auth:sanctum','admin']],function (){
     Route::get('/unpaid/{month}',[\App\Http\Controllers\Api\Admin\Paypal\IndexController::class,'unPaid']);
 
     //salaries
-    Route::get('/salaries',[\App\Http\Controllers\Api\Admin\Salaries\IndexController::class,'salaries']);
+    Route::get('/salaries/{month}',[\App\Http\Controllers\Api\Admin\Salaries\IndexController::class,'salaries']);
     Route::post('/salaries',[\App\Http\Controllers\Api\Admin\Salaries\IndexController::class,'salariesCalculate']);
 
     //tutor actions
