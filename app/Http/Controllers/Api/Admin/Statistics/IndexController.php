@@ -8,6 +8,7 @@ use App\Models\Course;
 use App\Models\Family;
 use App\Models\User;
 use App\Traits\Helpers\ApiResponseTrait;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -34,23 +35,28 @@ class IndexController extends Controller
     }
 
     public function totalDollars(){
-        $total = Billing::where('currency_id',1)->sum('amount');
+        $currentMonth = Carbon::now()->month;
+        $total = Billing::where('currency_id',1)->where('month',$currentMonth)->sum('amount');
         return $this->apiResponse('الاجمالي ',['total'=>$total],true,Response::HTTP_OK);
     }
     public function totalEuro(){
-        $total = Billing::where('currency_id',2)->sum('amount');
+        $currentMonth = Carbon::now()->month;
+        $total = Billing::where('currency_id',2)->where('month',$currentMonth)->sum('amount');
         return $this->apiResponse('الاجمالي ',['total'=>$total],true,Response::HTTP_OK);
     }
     public function totalCandainDollar(){
-        $total = Billing::where('currency_id',3)->sum('amount');
+        $currentMonth = Carbon::now()->month;
+        $total = Billing::where('currency_id',3)->where('month',$currentMonth)->sum('amount');
         return $this->apiResponse('الاجمالي ',['total'=>$total],true,Response::HTTP_OK);
     }
     public function totalPound(){
-        $total = Billing::where('currency_id',4)->sum('amount');
+        $currentMonth = Carbon::now()->month;
+        $total = Billing::where('currency_id',4)->where('month',$currentMonth)->sum('amount');
         return $this->apiResponse('الاجمالي ',['total'=>$total],true,Response::HTTP_OK);
     }
     public function totalHours(){
-        $total = Billing::sum('lecture_duration');
+        $currentMonth = Carbon::now()->month;
+        $total = Billing::where('month',$currentMonth)->sum('lecture_duration');
         return $this->apiResponse('الاجمالي ',['total'=>$total],true,Response::HTTP_OK);
     }
 }

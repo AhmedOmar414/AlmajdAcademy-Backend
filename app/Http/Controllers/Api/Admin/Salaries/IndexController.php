@@ -14,9 +14,9 @@ use Illuminate\Http\Response;
 class IndexController extends Controller
 {
     use ApiResponseTrait;
-    public function salaries(){
+    public function salaries(Request $request){
         $tutors = User::where('user_type_id',User::TUTOR)->get();
-        return $this->apiResponse('تم رجوع المعلمين بنجاح',TutorSalariesResource::collection($tutors),true,Response::HTTP_OK);
+        return $this->apiResponse('تم رجوع المعلمين بنجاح',TutorSalariesResource::collection($tutors)->additional(['month' => $request->month]),true,Response::HTTP_OK);
     }
     public function salariesCalculate(Request $request){
         $request->validate([
@@ -27,7 +27,7 @@ class IndexController extends Controller
 
         $salaries = [];
         foreach ($tutors as $tutor){
-            $object = ['id'=>$tutor->id,'name'=>$tutor->name,'total_hours'=>User::find($tutor->id)->billings()->sum('lecture_duration'),'salary'=>User::find($tutor->id)->billings()->sum('lecture_duration')*$hour_rate];
+            $object = ['id'=>$tutor->id,'name'=>$tutor->name,'total_hours'=>User::find($tutor->id)->billings()->where('month',$request->month)->sum('lecture_duration'),'salary'=>User::find($tutor->id)->billings()->where('month',$request->month)->sum('lecture_duration')*$hour_rate];
         array_push($salaries,$object);
         }
         return $this->apiResponse('تم رجوع المعلمين بنجاح',$salaries,true,Response::HTTP_OK);
